@@ -1,0 +1,5 @@
+.list-group-item-spacebetween {
+   display:flex;
+   justify-content: space-between;
+
+}
