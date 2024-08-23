@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddItemButton = ({setTodoData, setInputValue, inputValue}) => {
+const AddItemButton = ({setTodoData, setInputValue, inputValue, TodoData}) => {
 
 
     const handleInputChange = (value) => {
@@ -13,7 +13,9 @@ const AddItemButton = ({setTodoData, setInputValue, inputValue}) => {
     const handleAdd = () => {
 
         // setTodoData([...todoData,{label: inputValue, important: false, id: 1}]); // так не делать
-        setTodoData(prevState => [...prevState, {label: inputValue, important: false, id: Math.random()}]); // правило хорошей разработки от Димы
+        setTodoData(prevState => [...prevState, {label: inputValue, important: false, success: false, id: Math.random()}]); // правило хорошей разработки от Димы
+        console.log(TodoData);
+        
 
 
     };

@@ -13,12 +13,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const App = () => {
   const [todoData, setTodoData] = useState([
-    { label: "Drink Coffee", important: false, id: 1 },
-    { label: "Make Awesome App", important: true, id: 2 },
-    { label: "Have a lunch", important: false, id: 3 },
+    { label: "Drink Coffee", important: false, success: false, id: 1 },
+    { label: "Make Awesome App", important: true, success: false, id: 2 },
+    { label: "Have a lunch", important: false, success: false, id: 3 },
   ]);
-
-
 
   const [inputValue, setInputValue] = useState("");
 
@@ -35,8 +33,13 @@ const App = () => {
       {/* <span> {new Date().toString()}</span> */}
       <AppHeader />
       <SearchPanel />
-      <AddItemButton todoData={todoData} setTodoData= {setTodoData} inputValue={inputValue} setInputValue={setInputValue} />
-      <ButtonGroupTodo />
+      <AddItemButton
+        todoData={todoData}
+        setTodoData={setTodoData}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+      <ButtonGroupTodo todoData={todoData} setTodoData={setTodoData} />
       <TodoList todoData={todoData} setTodoData={setTodoData} />
     </div>
   );
