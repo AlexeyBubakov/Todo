@@ -1,35 +1,43 @@
-import React from "react";
+import React, { useState } from 'react'
 
-const AddItemButton = ({setTodoData, setInputValue, inputValue, TodoData}) => {
+const AddItemButton = ({ handleAddTodoItem }) => {
+	const [itemTitle, setItemTitle] = useState('')
 
+	const handleAdd = () => {
+		if (itemTitle.trim() === '') return
 
-    const handleInputChange = (value) => {
-        // setTodoData([...todoData, { label: "Buy cookies", important: false, id: todoData.length + 1 }]);
-        setInputValue(value);
+		const newItem = {
+			label: itemTitle,
+			important: false,
+			success: false,
+			id: Math.random(),
+		}
+		handleAddTodoItem(newItem)
+		setItemTitle('')
+	}
 
+	return (
+		<div className='input-group mb-3'>
+			<div className='input-group-prepend'>
+				<button
+					className='btn btn-outline-secondary'
+					onClick={handleAdd}
+					type='button'
+				>
+					Add
+				</button>
+			</div>
+			<input
+				type='text'
+				value={itemTitle}
+				onChange={e => setItemTitle(e.target.value)}
+				className='form-control'
+				placeholder='Type task'
+				aria-label=''
+				aria-describedby='basic-addon1'
+			/>
+		</div>
+	)
+}
 
-    };
-
-    const handleAdd = () => {
-
-        // setTodoData([...todoData,{label: inputValue, important: false, id: 1}]); // так не делать
-        setTodoData(prevState => [...prevState, {label: inputValue, important: false, success: false, id: Math.random()}]); // правило хорошей разработки от Димы
-        console.log(TodoData);
-        
-
-
-    };
-
-
-    return (
-        <div className="input-group mb-3">
-            <div className="input-group-prepend">
-                <button className="btn btn-outline-secondary" onClick={handleAdd} type="button">Add</button>
-            </div>
-            <input type="text" value={inputValue} onChange={(e) => handleInputChange(e.target.value)} className="form-control"
-                   placeholder="Type task" aria-label="" aria-describedby="basic-addon1"/>
-        </div>)
-
-};
-
-export default AddItemButton;
+export default AddItemButton
